@@ -1576,8 +1576,8 @@ git push -u origin main
 ### Шаг 5 — Ваш сайт готов!
 
 ```
-Сайт:         https://adminwilart.github.io/wilart/
-Админ панель: https://adminwilart.github.io/wilart/admin.html
+Сайт:         https://ВАШ_ЛОГИН.github.io/wilart/
+Админ панель: https://ВАШ_ЛОГИН.github.io/wilart/admin.html
 ```
 
 ---
