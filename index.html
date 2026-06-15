@@ -270,14 +270,97 @@
 </head>
 <body>
 
-    <!-- Preloader -->
-   <div id="preloader" class="fixed inset-0 z-[100] bg-brand-black flex items-center justify-center transition-opacity duration-700">
-    <div class="text-center">
-        <!-- Замените 'logo.png' на точное имя вашего светлого файла -->
-        <img src="assets/лого Corel DRAW 2-Photoroom.png" alt="Wilart Logo" class="h-16 md:h-20 w-auto mx-auto mb-6 object-contain">
-        <div class="w-24 h-[1px] bg-brand-red mx-auto animate-pulse"></div>
+   <!-- Preloader -->
+<div id="preloader" class="fixed inset-0 z-[100] bg-brand-black flex items-center justify-center overflow-hidden">
+    <!-- Animated background elements -->
+    <div class="absolute inset-0">
+        <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-brand-red/5 rounded-full blur-[120px] animate-pulse"></div>
+        <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[400px] h-[400px] bg-brand-gold/3 rounded-full blur-[100px] animate-pulse" style="animation-delay: 0.5s"></div>
     </div>
+
+    <!-- Main content -->
+    <div class="relative z-10 text-center px-6">
+        <!-- Logo container with animation -->
+        <div class="mb-8 overflow-hidden">
+            <img src="assets/Лого.png" alt="Wilart" class="h-20 md:h-24 w-auto mx-auto object-contain animate-[fadeInUp_1s_ease-out]">
+        </div>
+
+        <!-- Elegant divider -->
+        <div class="flex items-center justify-center gap-3 mb-8 animate-[fadeIn_1.2s_ease-out]">
+            <div class="w-16 h-[1px] bg-gradient-to-r from-transparent to-brand-red"></div>
+            <div class="w-2 h-2 bg-brand-red rotate-45"></div>
+            <div class="w-16 h-[1px] bg-gradient-to-l from-transparent to-brand-red"></div>
+        </div>
+
+        <!-- Loading text -->
+        <div class="mb-6 animate-[fadeIn_1.4s_ease-out]">
+            <p class="text-brand-gray text-xs tracking-[0.4em] uppercase font-medium mb-3">Загрузка</p>
+            <div class="w-48 h-[1px] bg-brand-darker mx-auto overflow-hidden">
+                <div id="progress-bar" class="h-full bg-brand-red w-0 transition-all duration-[2000] ease-out"></div>
+            </div>
+        </div>
+
+        <!-- Percentage counter -->
+        <div class="animate-[fadeIn_1.6s_ease-out]">
+            <span id="percentage" class="font-serif text-3xl text-white">0</span><span class="font-serif text-3xl text-brand-red">%</span>
+        </div>
+    </div>
+
+    <!-- Corner decorations -->
+    <div class="absolute top-8 left-8 w-12 h-12 border-l border-t border-brand-red/30 animate-[fadeIn_0.8s_ease-out]"></div>
+    <div class="absolute top-8 right-8 w-12 h-12 border-r border-t border-brand-red/30 animate-[fadeIn_0.8s_ease-out_delay_0.2s]"></div>
+    <div class="absolute bottom-8 left-8 w-12 h-12 border-l border-b border-brand-red/30 animate-[fadeIn_0.8s_ease-out_delay_0.4s]"></div>
+    <div class="absolute bottom-8 right-8 w-12 h-12 border-r border-b border-brand-red/30 animate-[fadeIn_0.8s_ease-out_delay_0.6s]"></div>
 </div>
+
+<style>
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+</style>
+
+<script>
+// Preloader functionality
+window.addEventListener('load', () => {
+    const preloader = document.getElementById('preloader');
+    const progressBar = document.getElementById('progress-bar');
+    const percentage = document.getElementById('percentage');
+    
+    // Animate progress bar
+    setTimeout(() => {
+        progressBar.style.width = '100%';
+    }, 100);
+
+    // Animate percentage counter
+    let currentPercent = 0;
+    const interval = setInterval(() => {
+        if (currentPercent >= 100) {
+            clearInterval(interval);
+            // Fade out preloader
+            setTimeout(() => {
+                preloader.style.opacity = '0';
+                setTimeout(() => {
+                    preloader.style.display = 'none';
+                }, 700);
+            }, 500);
+        } else {
+            currentPercent += 2;
+            percentage.textContent = currentPercent;
+        }
+    }, 40);
+});
+</script>
 
     <!-- Navigation -->
     <nav id="navbar" class="fixed top-0 left-0 w-full z-50 transition-all duration-500">
